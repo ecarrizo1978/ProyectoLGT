@@ -1,0 +1,52 @@
+
+<mat-sidenav-container autosize>
+  <mat-sidenav #sidenav mode="side" opened="isExpanded" class="mat-elevation-z8">
+
+    <mat-nav-list>
+      <span class="name" *ngIf="isExpanded">App Contactos</span>
+
+      <mat-list-item (click)="isExpanded = !isExpanded">
+        <mat-icon mat-list-icon class="chevron-button" [ngClass]="{ rotated: isExpanded }">
+          chevron_right
+        </mat-icon>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+      <span *ngIf="isExpanded">
+
+        <img class="avatar mat-elevation-z8" src="{{fotoPerfil}}" *ngIf="isExpanded" />
+
+      </span>
+      <h4 class="name" *ngIf="isExpanded">{{nombreUsuario}}</h4>
+      <mat-divider></mat-divider>
+
+
+      <mat-list-item *ngFor="let item of menuNuevo" [routerLink]="item.paginaAccion" class="menu-button">
+        <mat-icon mat-list-icon>
+          <span class="material-symbols-outlined "> {{ item.icono}} </span>
+        </mat-icon>
+        <span *ngIf="isExpanded" class="menu-item name">{{ item.descripcion}}</span>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-item (click)="logout()">
+        <mat-icon mat-list-icon>logout</mat-icon>
+        <span *ngIf="isExpanded" class="menu-item name">Logout</span>
+      </mat-list-item>
+
+    </mat-nav-list>
+
+
+
+
+  </mat-sidenav>
+
+  <!-- Content - rendered Content for the current router path into the <router-outlet>, e.g. /dashboard or /info-->
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+<!-- nuevo -->

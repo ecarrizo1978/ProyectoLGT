@@ -1,0 +1,148 @@
+<div mat-dialog-content>
+  
+
+    <mat-toolbar color="primary">
+      <span>{{actionBtn}} Cliente</span>
+    </mat-toolbar>
+
+
+    <!-- card -->
+    
+
+      <form [formGroup]="clienteForm" (ngSubmit)="agregarCliente()">
+
+        <mat-grid-list cols="2" rowHeight="100px">
+
+
+          <mat-grid-tile *ngIf="actionBtn == 'Guardar' " [colspan]="2" [rowspan]="2" class="fondo-gris">
+            <img style="width:150px; height:150px; border-radius:50%" [src]="rutaFoto+nombreFoto" alt="Alternate Text" />
+          </mat-grid-tile>
+
+          <mat-grid-tile *ngIf="actionBtn == 'Actualizar'" [colspan]="2" [rowspan]="2" class="fondo-gris">
+            <img style="width:150px; height:150px; border-radius:50%" [src]="rutaFoto+nombreFoto" alt="Alternate Text" />
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="2" [rowspan]="1">
+            <app-upload-file (rutaArchivo)="onResponseImage($event)" class="ancho"></app-upload-file>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-form-field class="ancho" appearance="outline">
+              <mat-label>Razón Social (Nombre)</mat-label>
+              <input matInput autocomplete="off" formControlName="razonSocial">
+            </mat-form-field>
+          </mat-grid-tile>
+
+
+          <mat-grid-tile>
+            <mat-form-field class="ancho" appearance="outline">
+              <mat-label>RUT</mat-label>
+              <input matInput autocomplete="off" formControlName="rut">
+              <mat-error class="text-danger" *ngIf="f.rut.errors?.required">Por favor ingresa el RUT chileno.</mat-error>
+              <mat-error *ngIf="f.rut.errors?.invalidRut">El formato del rut chileno es incorrecto.</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+
+          <mat-grid-tile>
+            <mat-form-field class="ancho" appearance="outline">
+              <mat-label>Tipo Razón Social</mat-label>
+              <mat-select placeholder="Seleccionar Tipo Razón Social" formControlName="tipoRSocialSelec">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let item of tipoRazonSocial" [value]="item.id">
+                  {{ item.descripcion }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <!-- agregar logica para componente modal -->
+          <mat-grid-tile>
+            <a mat-raised-button (click)="openDialog()" color="primary">Relacionar Cliente</a>
+          </mat-grid-tile>
+          <!-- agregar logica para componente modal -->
+
+
+          <mat-grid-tile>
+            <mat-form-field class="ancho" appearance="outline">
+              <mat-select placeholder="Seleccionar Región" required (selectionChange)="onSelect($event.value)" formControlName="regionSelect">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let region of regiones" [value]="region.id">
+                  {{region.nombre}}
+                </mat-option>
+              </mat-select>
+
+              <mat-error *ngIf="regionControl.hasError('required')">Debe seleccionar una región</mat-error>
+              <mat-hint>{{regionControl.value?.sound}}</mat-hint>
+            </mat-form-field>
+            <br />
+            <br />
+            <!--<div>Valid: {{ regionControl.valid }}</div>
+    <div>Error: {{ regionControl.errors | json }}</div>-->
+          </mat-grid-tile>
+
+
+          <mat-grid-tile>
+            <mat-form-field class="ancho" appearance="outline">
+              <mat-select placeholder="Seleccionar Comuna" required appearance="outline" formControlName="comunaSelect">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let comuna of comunas" [value]="comuna.id">
+                  {{comuna.nombre}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="comunaControl.hasError('required')">Debe seleccionar una comuna</mat-error>
+              <mat-hint>{{comunaControl.value?.sound}}</mat-hint>
+            </mat-form-field>
+            <br />
+            <br />
+            <!--<div>Valid: {{ comunaControl.valid }}</div>
+    <div>Error: {{ comunaControl.errors | json }}</div>-->
+          </mat-grid-tile>
+
+
+          <mat-grid-tile>
+            <mat-form-field class="ancho" appearance="outline">
+              <mat-label> Dirección </mat-label>
+              <input matInput autocomplete="off" formControlName="direccion">
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <!-- segun ultimo mockup 12-09-2022 -->
+          <mat-grid-tile>
+            <!-- <button type="button" mat-raised-button (click)="agregarContacto()" color="primary">Agregar Contacto</button> -->
+          </mat-grid-tile>
+          <!-- segun ultimo mockup 12-09-2022 -->
+
+
+          <mat-grid-tile [colspan]="2" [rowspan]="1">
+            <mat-form-field appearance="outline" style="width:90%;">
+              <mat-label>Correo Contacto</mat-label>
+              <input matInput autocomplete="off" formControlName="correo" />
+              <mat-error class="text-danger" *ngIf="f.correo.errors?.required">Por favor ingresa el correo del cliente</mat-error>
+              <mat-error class="text-danger" *ngIf="f.correo.errors?.email">Correo del cliente incorrecto</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+
+
+          <mat-grid-tile [colspan]="2" [rowspan]="1">
+
+            <a mat-raised-button style="margin-right:20px;" (click)="volver()">Volver</a>
+            <button mat-raised-button color="primary" [disabled]="clienteForm.invalid" type="submit">{{actionBtn}}</button>
+
+          </mat-grid-tile>
+
+
+        </mat-grid-list>
+
+      </form>
+
+
+    
+
+
+
+
+
+
+</div>

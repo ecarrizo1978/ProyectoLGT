@@ -1,0 +1,17 @@
+<form>
+
+    <mat-grid-list cols="2" rowHeight="50px" class="fondo-gris">
+      <mat-grid-tile>
+        <div>
+          <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none" />
+          <button mat-raised-button color="primary" type="button" (click)="file.click()">Subir</button>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div *ngIf="message">
+          {{message}}
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+</form>

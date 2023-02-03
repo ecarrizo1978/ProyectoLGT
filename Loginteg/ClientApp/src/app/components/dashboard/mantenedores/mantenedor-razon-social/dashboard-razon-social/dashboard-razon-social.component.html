@@ -1,0 +1,75 @@
+<div class="container">
+
+
+
+  <mat-form-field>
+    <mat-label>Buscar Razon Social</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: Autonomo" #input autocomplete="off" />
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <!-- tabla material -->
+    <mat-toolbar color="primary">
+      <span>Razon Social</span>
+
+      <div class="example-spacer">
+      </div>
+
+      <button mat-raised-button color="basic" (click)="openCrearRazonSocial()">Agregar</button>
+      <!--<button mat-raised-button color="basic" routerLink="/dashboard/crear-cliente">Agregar</button>-->
+    </mat-toolbar>
+
+    <div *ngIf="showData">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Razon Social </th>
+          <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="esactivo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Activo </th>
+          <td mat-cell *matCellDef="let element"> {{element.esActivo == "1" ? "Si" : "No"}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fechacreacion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Registro </th>
+          <td mat-cell *matCellDef="let element"> {{element.fechaCreacion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones</th>
+          <td mat-cell *matCellDef="let element; let i = index" style="text-align:right;">
+
+            <a class="pointer" style="color:goldenrod" matTooltip="Editar" (click)="openEditarRazonSocial(element)">
+              <mat-icon>edit</mat-icon>
+            </a>
+
+            <a class="pointer" style="color:crimson" matTooltip="Eliminar" (click)="openEliminarRazonSocial(element)">
+              <mat-icon>delete</mat-icon>
+            </a>
+
+          </td>
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+
+
+
+  </div>
+
+  <br />
+  <h2 *ngIf="!showData">No hay clientes para mostrar</h2>
+
+
+</div>

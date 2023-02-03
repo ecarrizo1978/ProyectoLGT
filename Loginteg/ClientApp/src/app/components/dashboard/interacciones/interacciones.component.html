@@ -1,0 +1,25 @@
+
+<div class="container">
+  <mat-toolbar color="primary">
+    <span>Historial Interacciones</span>
+
+    <div class="example-spacer">
+    </div>
+    <button mat-raised-button (click)="openDialog()">Agregar</button>
+  </mat-toolbar>
+
+
+
+  <div *ngIf="showData">
+    <!-- se debe utilizar for para crear una lista de CARDS -->
+    <div *ngFor="let item of interacciones" >
+      <app-interaccion-card [interaccion]="item"></app-interaccion-card>
+    </div>
+   
+  </div>
+
+
+  <br />
+  <h2 *ngIf="!showData">No hay Interacciones para mostrar</h2>
+
+</div>

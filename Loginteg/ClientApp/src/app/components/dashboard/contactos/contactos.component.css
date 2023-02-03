@@ -1,0 +1,23 @@
+table {
+  margin-top: 10px;
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+
+.th {
+  width: 20%;
+
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}

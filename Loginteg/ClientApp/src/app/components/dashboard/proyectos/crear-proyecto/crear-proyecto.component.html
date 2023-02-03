@@ -1,0 +1,71 @@
+
+<mat-toolbar color="primary">
+  <span>{{actionBtn}} proyecto</span>
+</mat-toolbar>
+<div mat-dialog-content>
+  <br />
+  <form [formGroup]="proyectoForm">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre proyecto</mat-label>
+      <input matInput autocomplete="off" formControlName="nombre">
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="outline">
+      <mat-label>Descripcion</mat-label>
+      <textarea matInput autocomplete="off" formControlName="descripcion"></textarea>
+    </mat-form-field>
+
+
+    <mat-form-field class="ancho" appearance="outline">
+      <mat-label>Usuario Asignado</mat-label>
+      <!--<mat-select placeholder="Seleccionar Usuario" formControlName="idUsuario">-->
+      <mat-select placeholder="Seleccionar Usuario" [formControl]="inputUsuarioFormControl">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let item of usuarios" [value]="item.idUsuario">
+          {{ item.nombre }}
+        </mat-option>
+      </mat-select>
+      <!--<mat-error *ngIf="tareaForm.controls['usuario'].hasError('required')">Debe seleccionar un</mat-error>-->
+
+    </mat-form-field>
+
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha Creación</mat-label>
+      <input matInput [matDatepicker]="pickerIni" formControlName="fechaCreacion">
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="pickerIni"></mat-datepicker-toggle>
+      <mat-datepicker #pickerIni></mat-datepicker>
+    </mat-form-field>
+    <br />
+
+
+    
+
+
+    <br />
+
+
+    <br />
+
+    <!-- ejemplo -->
+    <!--<mat-radio-group aria-label="Selecciona un tipo" class="example-radio-group">
+      <mat-radio-button *ngFor="let item of listaTipos" [value]="item" class="example-radio-button">
+        {{item}}
+      </mat-radio-button>
+    </mat-radio-group>-->
+
+
+    <div mat-dialog-action [align]="'end'">
+      <button type="button" mat-raised-button color="warn" mat-dialog-close (click)="volver()">Cerrar</button>
+      <button style="margin-left:10px;" mat-raised-button color="primary" mat-dialog-close (click)="agregarProyecto()">{{actionBtn}}</button>
+    </div>
+
+
+  </form>
+
+</div>
+<!-- contenido -->

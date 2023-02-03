@@ -1,0 +1,176 @@
+<mat-toolbar color="primary">
+  <span>{{actionBtn}} Contacto</span>
+</mat-toolbar>
+<div mat-dialog-content>
+
+  <form [formGroup]="contactoForm" (ngSubmit)="agregarContacto()">
+
+    <mat-grid-list cols="2" rowHeight="100px">
+
+      <mat-grid-tile>
+        <mat-form-field class="ancho" appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput autocomplete="off" formControlName="nombre">
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile>
+        <mat-form-field class="ancho" appearance="outline">
+          <mat-label>Cargo</mat-label>
+          <mat-select placeholder="Seleccionar Cargo" formControlName="cargo">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let item of cargos" [value]="item.id">
+              {{ item.descripcion }}
+            </mat-option>
+          </mat-select>
+
+
+          <mat-error *ngIf="contactoForm.controls['cargo'].hasError('required')">Debe seleccionar un Cargo</mat-error>
+
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile>
+        <mat-form-field class="ancho" appearance="outline">
+          <mat-label>Teléfono 1</mat-label>
+          <input matInput autocomplete="off" formControlName="telefono1" pattern="[0-9]{9}">
+
+          <mat-error *ngIf="contactoForm.controls['telefono1'].hasError('required')">Teléfono requerido</mat-error>
+          <mat-error *ngIf="contactoForm.controls['telefono1'].hasError('pattern')">
+            Por favor, introduce Teléfono válido
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile>
+        <mat-form-field class="ancho" appearance="outline">
+          <mat-label>Teléfono 2</mat-label>
+          <input matInput autocomplete="off" formControlName="telefono2" pattern="[0-9]{9}">
+
+          <mat-error *ngIf="contactoForm.controls['telefono2'].hasError('required')">Teléfono requerido</mat-error>
+          <mat-error *ngIf="contactoForm.controls['telefono2'].hasError('pattern')">
+            Por favor, introduce Teléfono válido
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="ancho" appearance="outline">
+          <mat-label>Correo Institucional</mat-label>
+          <input matInput autocomplete="off" formControlName="correoInstitucional"
+                 pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+
+          <mat-error *ngIf="contactoForm.controls['correoInstitucional'].hasError('required')">Email requerido</mat-error>
+          <mat-error *ngIf="contactoForm.controls['correoInstitucional'].hasError('pattern')">
+            Por favor, introduce una dirección de correo electrónico válida
+          </mat-error>
+          <!--<mat-error style="color: red;" *ngIf="form.controls['correoCorporativo']">El correo debe ser @loginteg.cl</mat-error>
+      <mat-hint>{{contactoForm.value?.sound}}</mat-hint>-->
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="ancho" appearance="outline">
+          <mat-label>Correo Personal</mat-label>
+          <input matInput autocomplete="off" formControlName="correoPersonal"
+                 pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+
+          <mat-error *ngIf="contactoForm.controls['correoPersonal'].hasError('required')">Email requerido</mat-error>
+          <mat-error *ngIf="contactoForm.controls['correoPersonal'].hasError('pattern')">
+            Por favor, introduce una dirección de correo electrónico válida
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <mat-form-field appearance="outline" style="width:90%">
+          <mat-select placeholder="Seleccionar Medio de Contacto"
+                      required
+                      (selectionChange)="onSelect($event.value)"
+                      formControlName="medioContactoSelect">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let item of mediosContacto" [value]="item.id">
+              {{item.nombre}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="medioContactoControl.hasError('required')">Debe seleccionar un medio de contacto</mat-error>
+          <mat-hint>{{medioContactoControl.value?.sound}}</mat-hint>
+        </mat-form-field>
+        <br />
+      </mat-grid-tile>
+
+
+<!--
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <mat-form-field appearance="outline" style="width:90%">
+          <mat-label>Instituciones</mat-label>
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let fruit of fruits"
+                      [selectable]=true
+                      [removable]=true
+                      (removed)="remove(fruit)">
+              {{fruit.nombre}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Instituciones..."
+                   #fruitInput
+                   [formControl]="fruitCtrl"
+                   [matAutocomplete]="auto"
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]=true
+                   (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+              {{fruit.nombre}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </mat-grid-tile>
+-->
+
+
+      <mat-grid-tile>
+        <mat-form-field class="ancho" appearance="outline">
+          <mat-label>Cliente</mat-label>
+          <mat-select placeholder="Seleccionar Cliente" formControlName="cliente">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let item of listaclientes" [value]="item.idCliente">
+              {{ item.razonSocial }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- nuevo campo 30-09 -->
+      <mat-grid-tile style="max-height:100px">
+        <section class="example-section" [formGroup]="contactoForm">
+          <p><mat-checkbox [checked]="IsChecked" (change)="changeEvent($event)" formControlName="esContactoPrincipal">Es Contacto Principal</mat-checkbox></p>
+        </section>
+
+      </mat-grid-tile>
+      <!-- nuevo campo 30-09 -->
+
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+
+        <!-- SE DEBE COMENTAR EL BOTON VOLVER, EL DIALOG NO SE DEBE CERRAR HASTA INGRESAR EL CONTACTO -->
+        <button type="button" mat-raised-button style="margin-right:20px;" (click)="volver()">Volver</button>
+        <button mat-raised-button color="primary" [disabled]="contactoForm.invalid" type="submit">{{actionBtn}}</button>
+
+      </mat-grid-tile>
+
+    </mat-grid-list>
+
+  </form>
+  <!-- final form -->
+
+</div>

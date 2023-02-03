@@ -1,0 +1,28 @@
+<div class="card-wrapper">
+
+  <mat-card class="example-card">
+    <mat-card-header>
+
+      <!--<mat-card-title> Interacción </mat-card-title>-->
+      <mat-card-subtitle>
+        <strong>Creado por:</strong> {{ interaccion.nombreEmisor }}
+      </mat-card-subtitle>
+
+
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>
+        {{ interaccion.fechaCreacion | date:'dd/MM/yyyy' }} / {{ interaccion.nombreEmisor }} / {{ interaccion.tipoSolicitud }} / {{ interaccion.solicitud }}
+        / <strong>Ruta archivo: </strong>{{ interaccion.urlArchivo }}  / <strong>Nombre archivo :</strong> {{ interaccion.nombreArchivo }}
+</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <!--<button mat-raised-button color="accent">LIKE</button>
+  <button mat-raised-button color="primary">SHARE</button>   -->
+    </mat-card-actions>
+
+  </mat-card>
+  <br />
+</div>

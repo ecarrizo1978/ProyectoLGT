@@ -1,0 +1,77 @@
+
+<mat-toolbar color="primary">
+  <span>{{actionBtn}} Interacción</span>
+</mat-toolbar>
+<div mat-dialog-content>
+
+  <form [formGroup]="interaccionesForm">
+
+    <mat-grid-list cols="2" rowHeight="100px">
+
+      <mat-grid-tile [colspan]="2">
+        <mat-form-field appearance="outline">
+          <mat-label>Emisor</mat-label>
+          <input matInput autocomplete="off" formControlName="emisor">
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile>
+        <mat-form-field class="ancho" appearance="outline">
+          <mat-label>Tipo Solicitud</mat-label>
+          <mat-select placeholder="Seleccionar Tipo Solicitud" formControlName="tipoSolicitud">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let item of tipoSolicitudes" [value]="item.nombre">
+              {{ item.nombre }}
+            </mat-option>
+          </mat-select>
+
+          <mat-error *ngIf="interaccionesForm.controls['tipoSolicitud'].hasError('required')">Debe seleccionar un Tipo Solicitud</mat-error>
+
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile>
+        <mat-form-field class="ancho" appearance="outline">
+          <mat-label>Solicitudes</mat-label>
+          <mat-select placeholder="Seleccionar Solicitud" formControlName="solicitud">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let item of solicitudes" [value]="item.nombre">
+              {{ item.nombre }}
+            </mat-option>
+          </mat-select>
+
+          <mat-error *ngIf="interaccionesForm.controls['solicitud'].hasError('required')">Debe seleccionar un Solicitudes</mat-error>
+
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile [colspan]="2" >
+        <mat-form-field appearance="outline">
+          <mat-label>Glosa</mat-label>
+          <textarea matInput autocomplete="off" formControlName="glosa"></textarea>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="2" [rowspan]="3" >
+        <app-multi-archivo (rutaArchivo)="onResponseFile($event)" style="width:90%"></app-multi-archivo>
+      </mat-grid-tile>
+
+
+
+        <mat-grid-tile [colspan]="2">
+          <div mat-dialog-action [align]="'end'">
+            <button mat-raised-button color="warn" mat-dialog-close>Cerrar</button>
+            <button style="margin-left:10px;" mat-raised-button color="primary" mat-dialog-close (click)="agregarInteraccion()">{{actionBtn}}</button>
+          </div>
+        </mat-grid-tile>
+
+
+    </mat-grid-list>
+
+  </form>
+
+</div>
+<!-- contenido -->

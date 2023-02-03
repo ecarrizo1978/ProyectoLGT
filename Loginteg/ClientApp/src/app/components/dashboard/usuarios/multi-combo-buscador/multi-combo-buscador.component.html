@@ -1,0 +1,25 @@
+
+  <h3>Empresas Hijas</h3>
+  <p>
+    <mat-form-field >
+      <mat-select [formControl]="bankMultiCtrl" placeholder="Empresas" [multiple]="true" #multiSelect (selectionChange)="onSelect($event)">
+        <mat-option>
+          <ngx-mat-select-search [formControl]="bankMultiFilterCtrl"></ngx-mat-select-search>
+        </mat-option>
+        <mat-option *ngFor="let item of filteredBanksMulti | async" [value]="item">
+          {{item.razonSocial}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+  <p>
+    <!-- comentario aca -->
+    Empresas hijas :
+  </p>
+  <ul *ngFor="let bank of bankMultiCtrl?.value">
+    <li>{{bank.razonSocial}}</li>
+  </ul>
+
+
+
+

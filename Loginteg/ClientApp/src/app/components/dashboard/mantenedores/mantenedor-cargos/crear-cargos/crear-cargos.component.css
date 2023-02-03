@@ -1,0 +1,25 @@
+mat-grid-tile {
+  /* background: lightgreen;*/
+}
+
+
+.ancho {
+  width: 80%;
+}
+
+.fondo-gris {
+  background: lightgray;
+  border-radius: 10px;
+}
+
+.text-15 {
+  font-size: 15px;
+}
+
+.margin-l {
+  margin-left: 15px;
+}
+
+.add-top {
+  top: 150px !important;
+}

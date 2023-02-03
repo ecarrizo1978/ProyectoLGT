@@ -1,0 +1,66 @@
+<h1>Relacionar Empresa</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="relacionarForm">
+
+    <mat-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="inicioFormGroup">
+        <!--<form [formGroup]="firstFormGroup">-->
+        <ng-template matStepLabel>Selecciona el tipo de relación</ng-template>
+        <div>
+          <br />
+          <button mat-raised-button (click)="switchEmpresaPadre()" color="primary" style="margin-right:20px;" matStepperNext>Empresa Padre</button>
+          <button mat-raised-button (click)="switchEmpresaHija()" color="accent" matStepperNext>Empresa Hija</button>
+        </div>
+        <!--</form>-->
+      </mat-step>
+
+      <!-- PARA EMPRESA PADRE-->
+      <mat-step *ngIf="tipoEmpresa === 'PADRE' " [stepControl]="padreFormGroup" label="Empresa Padre">
+        <!-- nuevo componente -->
+        <app-combo-buscador [empresasPadre]="empresasPadre" (responseCombo)="parentEventHandlerCombo($event)"></app-combo-buscador>
+
+        <br />
+        <div>
+          <button mat-button matStepperPrevious>Anterior</button>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+
+      </mat-step>
+      <!-- PARA EMPRESA PADRE-->
+
+
+      <!-- PARA EMPRESA  HIJA -->
+      <mat-step *ngIf="tipoEmpresa === 'HIJA' " [stepControl]="hijaFormGroup" label="Empresa Padre">
+        <!-- nuevo componente -->
+        <app-multi-combo-buscador [empresasHijas]="empresasHijas" (responseComboMulti)="parentEventHandlerCombo($event)"></app-multi-combo-buscador>
+        <br />
+
+        <div>
+          <button mat-button matStepperPrevious>Anterior</button>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+
+      </mat-step>
+      <!-- PARA EMPRESA  HIJA -->
+
+
+      <mat-step>
+        <ng-template matStepLabel>Completado</ng-template>
+        <p>Registro completado.</p>
+        <div>
+          <button mat-button matStepperPrevious>Anterior</button>
+          <button mat-button (click)="stepper.reset()">Restablecer</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+
+
+    <div mat-dialog-action [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Cerrar</button>
+      <button style="margin-left:10px;" mat-raised-button color="primary" mat-dialog-close (click)="relacionarEmpresa()">Guardar</button>
+    </div>
+
+  </form>
+
+</div>

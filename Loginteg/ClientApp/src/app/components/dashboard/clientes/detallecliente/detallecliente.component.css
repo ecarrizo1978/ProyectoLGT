@@ -1,0 +1,73 @@
+table {
+  margin-top: 10px;
+  width: 100%;
+}
+
+
+.th {
+  width: 20%;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.mat-form-field {
+  /*font-size: 14px;*/
+  width: 100%;
+}
+
+
+.mat-grid-tile {
+  background: transparent;
+}
+
+
+
+.fondo-gris {
+  background: lightgray;
+  border-radius: 10px;
+}
+
+.fondo-azul {
+  background: #2B2C84;
+  border-radius: 10px;
+  color: white;
+}
+
+.boton-azul {
+  background: #2B2C84;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+}
+  .boton-azul:hover {
+    background: #1f2ea4;
+    transition: transform .3s ease-in-out;
+    transform: scale(1.05);
+  }
+
+.input-detalle {
+  width: 80%;
+}
+
+.ancho {
+  width: 80%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+}
+
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+
+
+logo-cliente {
+  background: lightgray;
+}

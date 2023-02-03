@@ -1,0 +1,78 @@
+table {
+  margin-top: 10px;
+  width: 100%;
+}
+
+
+.th {
+  width: 20%;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+
+
+
+.mat-grid-tile {
+  background: transparent;
+}
+
+.logo-cliente {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.fondo-gris {
+  background: lightgray;
+  border-radius: 10px;
+}
+
+.fondo-azul {
+  background: #2B2C84;
+  border-radius: 10px !important;
+  color: white;
+}
+.fondo-azul-tr {
+  background: #2B2C84;
+  border-radius: 5px !important;
+  color: white;
+  display: inline-block;
+  width: 12em;
+  padding: 15px;
+  text-decoration: none;
+}
+
+.boton-azul {
+  background: #2B2C84;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+}
+
+.input-detalle {
+  width: 80%;
+}
+
+.ancho {
+  width: 80%;
+}
+
+
+.mat-form-field {
+  font-size: 14px;
+}
+
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+
+
+logo-cliente {
+  background: lightgray;
+}

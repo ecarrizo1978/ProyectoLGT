@@ -1,0 +1,17 @@
+<h3>Empresa Padre</h3>
+<p>
+  <mat-form-field>
+    <mat-select [formControl]="bankCtrl" placeholder="Empresa" #singleSelect (selectionChange)="onSelect($event.value)">
+      <mat-option>
+        <ngx-mat-select-search [formControl]="bankFilterCtrl"></ngx-mat-select-search>
+      </mat-option>
+
+      <mat-option *ngFor="let item of filteredBanks | async" [value]="item">
+        {{item.razonSocial}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</p>
+<p>
+  Empresa: {{bankCtrl.value?.razonSocial}}
+</p>

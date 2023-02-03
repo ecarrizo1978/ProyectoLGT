@@ -1,0 +1,87 @@
+<div class="container">
+
+
+
+    <mat-form-field>
+      <mat-label>Buscar Proyecto</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: 12345678-0" #input autocomplete="off" />
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <!-- tabla material -->
+      <mat-toolbar color="primary">
+        <span>Proyectos</span>
+
+        <div class="example-spacer">
+        </div>
+
+        <button mat-raised-button color="basic" (click)="openDialog()">Agregar</button>
+        <!--<button mat-raised-button color="basic" routerLink="/dashboard/crear-cliente">Agregar</button>-->
+      </mat-toolbar>
+
+      <div *ngIf="showData">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+          <ng-container matColumnDef="idProyecto">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.idProyecto}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> descripcion </th>
+            <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="ejecutivo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ejecutivo </th>
+            <td mat-cell *matCellDef="let element"> {{element.ejecutivo}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones</th>
+            <td mat-cell *matCellDef="let element; let i = index" style="text-align:right;">
+
+              <!--<a class="pointer" style="color:dodgerblue" matTooltip="Buscar" routerLink="/dashboard/detalle-proyecto"
+                 [queryParams]="{idCliente:element.idCliente}">
+                <mat-icon>search</mat-icon>
+              </a>-->
+
+              <a class="pointer" style="color:goldenrod" matTooltip="Editar" (click)="editarProyecto(element)">
+                <mat-icon>edit</mat-icon>
+              </a>
+
+              <!-- se debe pasar element.id} -->
+              <a class="pointer" style="color:crimson" matTooltip="Eliminar" (click)="eliminarProyecto(element)">
+                <mat-icon>delete</mat-icon>
+              </a>
+
+            </td>
+          </ng-container>
+
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                       showFirstLastButtons
+                       aria-label="Select page of periodic elements">
+        </mat-paginator>
+      </div>
+
+
+
+    </div>
+
+  <br />
+  <h2 *ngIf="!showData">No hay clientes para mostrar</h2>
+
+
+</div>

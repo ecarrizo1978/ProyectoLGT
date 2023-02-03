@@ -1,0 +1,182 @@
+<!--gutterSize="55px" para dar separación entre grids-->
+<div class="container">
+  <mat-toolbar color="primary">
+
+    <span>CRM</span>
+    <div class="example-spacer">
+    </div>
+
+    <button mat-raised-button color="basic" routerLink="/dashboard/detalle-cliente"
+            [queryParams]="{idCliente:idCliente}">
+      Volver
+    </button>
+    <!--<button mat-raised-button color="basic" routerLink="/dashboard/crear-cliente">Agregar</button>-->
+  </mat-toolbar>
+  <br />
+  <mat-grid-list cols="6" rowHeight="80px" gutterSize="10px">
+    <!--<mat-grid-tile colspan="1"></mat-grid-tile>-->
+    <!--buscar cliente-->
+    <!--<mat-grid-tile colspan="5">
+    <mat-form-field>
+      <mat-label>Buscar Cliente</mat-label>
+      <input matInput placeholder="example search" #input autocomplete="off" />
+    </mat-form-field>
+  </mat-grid-tile>-->
+    <!--fin buscar cliente-->
+    <!--logo cliente-->
+    <mat-grid-tile colspan="1" rowspan="4" style="background:lightgray !important;">
+      <!--<img src="{logoCliente}" class="card-img-top" alt="...">-->
+      <img style="width:200px; height:200px;" class="avatar mat-elevation-z8" src="{{logoCliente}}" />
+    </mat-grid-tile>
+    <!--fin logo cliente-->
+    <!--form detalles grales-->
+    <form [formGroup]="clienteForm">
+      <mat-grid-tile colspan="2" rowspan="4">
+        <table class="input-detalle">
+          <tr>
+            <mat-form-field appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input matInput autocomplete="off" formControlName="nombre" readonly>
+            </mat-form-field>
+          </tr>
+          <tr>
+            <mat-form-field appearance="outline">
+              <mat-label>Direccion</mat-label>
+              <input matInput autocomplete="off" formControlName="direccion" readonly>
+            </mat-form-field>
+          </tr>
+          <tr>
+            <mat-form-field appearance="outline">
+              <mat-label>Rut empresa</mat-label>
+              <input matInput autocomplete="off" formControlName="rut" readonly>
+            </mat-form-field>
+          </tr>
+        </table>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="2" rowspan="4" readonly>
+        <table class="input-detalle">
+          <tr>
+            <mat-form-field appearance="outline">
+              <mat-label>Institucion</mat-label>
+              <input matInput autocomplete="off" formControlName="institucion" readonly>
+            </mat-form-field>
+          </tr>
+          <tr>
+            <mat-form-field appearance="outline">
+              <mat-label>Contactos</mat-label>
+              <input matInput autocomplete="off" formControlName="contactos" readonly>
+            </mat-form-field>
+          </tr>
+          <tr>
+            <mat-form-field appearance="outline">
+              <mat-label>Nombre Contacto</mat-label>
+              <input matInput autocomplete="off" formControlName="nombreContacto" readonly>
+            </mat-form-field>
+          </tr>
+          <tr>
+            <mat-form-field appearance="outline">
+              <mat-label>Correo</mat-label>
+              <input matInput autocomplete="off" formControlName="correo" readonly>
+            </mat-form-field>
+          </tr>
+        </table>
+      </mat-grid-tile>
+    </form>
+    <!--fin form detalles grales-->
+    <!--detalles y botones-->
+    <mat-grid-tile colspan="1" rowspan="1" class="fondo-gris">
+      <table style="text-align:center">
+        <tr>Tipo Cobranza</tr>
+        <tr><th>Medio</th></tr>
+      </table>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1" class="fondo-gris">
+      <table style="text-align:center">
+        <tr>Autonomía</tr>
+        <tr><th>Independiente</th></tr>
+      </table>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1" class="fondo-azul">Actualizar perfil</mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1" class="fondo-azul">Contactos</mat-grid-tile>
+    <!--fin detalles y botones-->
+  </mat-grid-list>
+  <br />
+  <mat-grid-list cols="6" rowHeight="1:1" gutterSize="55px">
+    <mat-grid-tile colspan="2" rowspan="4" class="fondo-gris">
+      <table>
+        <tr style="border-width:15px; border-color:transparent; text-align:center">
+          Equipos
+        </tr>
+        <!--<tr *ngFor="let item of cards" style="border-width:15px; border-color:transparent">
+        <mat-card>
+          <mat-card-title>{{item.title}}</mat-card-title>
+          <mat-card-subtitle>{{item.subtitle}}</mat-card-subtitle>
+          <mat-card-content>
+            {{item.content}}
+          </mat-card-content>
+        </mat-card>
+      </tr>-->
+      </table>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="3" class="fondo-gris">
+      <table>
+        <tr style="border-width: 15px; border-color: transparent; text-align: center">
+          Solicitudes de servicio
+        </tr>
+        <!--<tr style="text-align:center">
+        <span class="boton-azul">
+          Crear Nueva Solicitud de servicio
+        </span>
+
+      </tr>-->
+        <!--<tr *ngFor="let item of cardsSolicitudes" style="border-width:15px; border-color:transparent">
+        <mat-card>
+          <mat-card-title>{{item.title}}</mat-card-title>
+          <mat-card-subtitle>{{item.subtitle}}</mat-card-subtitle>
+          <mat-card-content>
+            {{item.content}}
+          </mat-card-content>
+        </mat-card>
+      </tr>-->
+      </table>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1" class="fondo-gris">
+      Bitacoras
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1" class="fondo-gris">Documentos Tributarios</mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1" class="fondo-gris">Cotizaciones</mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1" class="fondo-gris">
+      <table style="margin:35px">
+        <tr style=" text-align: center">
+          Tareas
+        </tr>
+        <tr style=" text-align: center">
+          <a class="fondo-azul-tr" routerLink="/dashboard/tareas">Ver Tareas</a>
+        </tr>
+      </table>
+      
+
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1" class="fondo-gris">
+
+      <table style="margin:35px">
+        <tr style="text-align: center">
+          Proyectos
+        </tr>
+
+        <tr style="text-align: center">
+          
+            <a class="fondo-azul-tr" routerLink="/dashboard/proyectos"  [queryParams]="{idCliente:idCliente}">
+              Ver Proyectos
+            </a>
+          
+        </tr>          
+      </table>
+
+
+    </mat-grid-tile>
+  </mat-grid-list>
+  <br />
+
+</div>
+

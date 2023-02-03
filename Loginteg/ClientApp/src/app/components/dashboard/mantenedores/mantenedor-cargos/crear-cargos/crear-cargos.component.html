@@ -1,0 +1,48 @@
+<div mat-dialog-content>
+  <mat-toolbar color="primary">
+    <span>Crear Cargos</span>
+  </mat-toolbar>
+  <form [formGroup]="crearCargosForm" (ngSubmit)="guardarCargos()">
+
+    <mat-grid-list cols="2" rowHeight="100px">
+
+
+      <mat-grid-tile>
+        <mat-form-field class="ancho" appearance="outline">
+          <mat-label>Nombre del cargo</mat-label>
+          <input matInput autocomplete="off" formControlName="cargo">
+          <!--<mat-error class="text-danger" *ngIf="f.rut.errors?.required">Por favor ingresa el RUT chileno.</mat-error>
+          <mat-error *ngIf="f.rut.errors?.invalidRut">El formato del rut chileno es incorrecto.</mat-error>-->
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-checkbox formControlName="activo" [(ngModel)]="IsChecked">Activo</mat-checkbox>
+      </mat-grid-tile>
+
+      <!--<mat-grid-tile [colspan]="2" class="add-top">
+        <h2>Accesos</h2>
+      </mat-grid-tile>-->
+      <!--<mat-grid-tile class="text-15" [colspan]="2">
+        <mat-label class="margin-l" *ngFor="let item of listaMenus">
+          <mat-checkbox type="checkbox" (change)="onChange(item.idMenu, $event.checked)" formControlName="menus"></mat-checkbox>
+          {{item.descripcion}}
+        </mat-label>
+      </mat-grid-tile>-->
+
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+
+        <a mat-raised-button style="margin-right:20px;" (click)="volver()">Volver</a>
+        <button mat-raised-button color="primary" [disabled]="crearCargosForm.invalid" type="submit">Guardar</button>
+
+
+      </mat-grid-tile>
+
+
+
+
+
+    </mat-grid-list>
+
+  </form>
+</div>

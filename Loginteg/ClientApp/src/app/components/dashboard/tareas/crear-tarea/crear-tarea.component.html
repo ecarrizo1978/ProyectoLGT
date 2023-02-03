@@ -1,0 +1,96 @@
+
+<mat-toolbar color="primary">
+  <span>{{actionBtn}} Tarea</span>
+</mat-toolbar>
+  <div mat-dialog-content>
+    <br />
+    <form [formGroup]="tareaForm">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre Tarea</mat-label>
+        <input matInput autocomplete="off" [formControl]="nombreFormControl">
+      </mat-form-field>
+      <br />
+
+      <mat-form-field appearance="outline">
+        <mat-label>Descripcion</mat-label>
+        <textarea matInput autocomplete="off" [formControl]="descripcionFormControl"></textarea>
+      </mat-form-field>
+
+
+      <mat-form-field class="ancho" appearance="outline">
+        <mat-label>Usuario Asignado</mat-label>
+        <!--<mat-select placeholder="Seleccionar Usuario" formControlName="idUsuario">-->
+        <mat-select placeholder="Seleccionar Usuario" [formControl]="inputUsuarioFormControl">
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let item of usuarios" [value]="item.idUsuario">
+            {{ item.nombre }}
+          </mat-option>
+        </mat-select>
+        <!--<mat-error *ngIf="tareaForm.controls['usuario'].hasError('required')">Debe seleccionar un</mat-error>-->
+
+      </mat-form-field>
+
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha Inicio</mat-label>
+        <input matInput
+               [matDatepicker]="pickerIni"
+               formControlName="fechaInicio" >
+
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="pickerIni"></mat-datepicker-toggle>
+        <mat-datepicker #pickerIni></mat-datepicker>
+      </mat-form-field>
+      <br />
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha Termino</mat-label>
+        <input matInput [matDatepicker]="pickerTer" formControlName="fechaTermino">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="pickerTer"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTer></mat-datepicker>
+      </mat-form-field>
+      <br />
+
+
+      <mat-form-field class="ancho" appearance="outline">
+        <mat-label> Estado</mat-label>
+        <mat-select placeholder="Seleccionar Estado" formControlName="estado">
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let item of estados" [value]="item.nombre">
+            {{ item.nombre }}
+          </mat-option>
+        </mat-select>
+
+
+        <!--<mat-error *ngIf="tareaForm.controls['usuario'].hasError('required')">Debe seleccionar un</mat-error>-->
+
+      </mat-form-field>
+      <br />
+
+
+      <br />
+
+      <!-- ejemplo -->
+      <!--<mat-radio-group aria-label="Selecciona un tipo" class="example-radio-group">
+    <mat-radio-button *ngFor="let item of listaTipos" [value]="item" class="example-radio-button">
+      {{item}}
+    </mat-radio-button>
+  </mat-radio-group>-->
+
+
+      <div mat-dialog-action [align]="'end'">
+        <button mat-raised-button color="warn" mat-dialog-close>Cerrar</button>
+        <button style="margin-left:10px;" mat-raised-button color="primary" mat-dialog-close (click)="agregarTarea()">{{actionBtn}}</button>
+      </div>
+
+
+    </form>
+
+  </div>
+  <!-- contenido -->
+
+
